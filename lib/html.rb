@@ -7,13 +7,13 @@ module HTML
 
   # An html fragment
   class Fragment
-    include Adamantium, Equalizer.new(:to_s)
+    include Adamantium, Equalizer.new(:to_str)
 
     def initialize(string)
       @string = string.dup.freeze
     end
 
-    def to_s
+    def to_str
       @string
     end
 
