@@ -9,23 +9,15 @@ module HTML
   class Fragment
     include Adamantium, Equalizer.new(:content)
 
-    def initialize(string)
-      @content = string.dup.freeze
-    end
+    attr_reader :content
 
-    def to_str
+    def to_s
       @content
     end
 
-    # Return fragment is html safe
-    #
-    # This is a compatiblity api for rails style XSS protection.
-    #
-    # @return [String]
-    #
-    # @api private
-    #
-    def html_safe?; true; end
+    def initialize(string)
+      @content = string.dup.freeze
+    end
 
     # Create new fragment
     #
