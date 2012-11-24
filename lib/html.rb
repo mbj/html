@@ -7,7 +7,7 @@ module HTML
 
   # An html fragment
   class Fragment
-    include Adamantium, Equalizer.new(:content)
+    include Adamantium::Flat, Equalizer.new(:content)
 
     attr_reader :content
 
