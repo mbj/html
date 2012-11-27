@@ -9,14 +9,24 @@ module HTML
   class Fragment
     include Adamantium::Flat, Equalizer.new(:content)
 
+    # Return contents of fragment
+    #
+    # @return [String]
+    #
+    # @api private
+    #
     attr_reader :content
 
-    def to_s
-      @content
-    end
-
+    # Initialize object
+    #
+    # @param [String] string
+    #
+    # @return [undefined]
+    #
+    # @api private
+    #
     def initialize(string)
-      @content = string.dup.freeze
+      @content = self.class.freezer.call(string)
     end
 
     # Create new fragment
