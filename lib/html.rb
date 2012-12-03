@@ -77,7 +77,7 @@ module HTML
     )
   end
 
-  %w(li div label select option textarea).each do |name|
+  %w(a li div label select option textarea).each do |name|
     class_eval(<<-RUBY, __FILE__, __LINE__)
       def self.#{name}(*args)
         content_tag(:#{name}, *args)
