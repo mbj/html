@@ -29,6 +29,14 @@ module HTML
       @content = self.class.freezer.call(string)
     end
 
+    # Return string 
+    #
+    # FIXME: This will be removed once I have my own templating language.
+    #
+    # @return [String]
+    #
+    alias_method :to_s, :content
+
     # Create new fragment
     #
     # @param [String,Fragment] 
