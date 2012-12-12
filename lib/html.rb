@@ -93,7 +93,7 @@ module HTML
     RUBY
   end
 
-  %w(input).each do |name|
+  %w(input img).each do |name|
     class_eval(<<-RUBY, __FILE__, __LINE__)
       def self.#{name}(*args)
         tag(:#{name}, *args)
