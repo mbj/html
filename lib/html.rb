@@ -41,7 +41,7 @@ module HTML
 
     # Create new fragment
     #
-    # @param [String,Fragment] 
+    # @param [String,Fragment] input
     #  
     # @return [Fragment]
     #
