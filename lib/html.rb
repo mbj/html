@@ -1,6 +1,8 @@
 #encoding: utf-8
 require 'adamantium'
 require 'equalizer'
+require 'ice_nine'
+require 'ice_nine/core_ext/object'
 
 # Library namespace
 module HTML
