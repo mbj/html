@@ -85,7 +85,12 @@ module HTML
     )
   end
 
-  %w(a li div label select option textarea).each do |name|
+  CONTENT_TAGS = %w(
+    a ul ol form fieldset table tr td tbody li div label 
+    select option textarea
+  ).deep_freeze
+  
+  CONTENT_TAGS.each do |name|
     class_eval(<<-RUBY, __FILE__, __LINE__)
       def self.#{name}(*args)
         content_tag(:#{name}, *args)
