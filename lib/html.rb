@@ -15,7 +15,7 @@ module HTML
     mark menu nav noscript object ol optgroup option output p pre 
     q ruby rp rt s samp script section select small span strong 
     style sub summary sup table tbody textarea tfoot th thead time 
-    title tr var video
+    title tr ul var video
   ))
 
   NOCONTENT_TAGS = IceNine.deep_freeze(%w(
