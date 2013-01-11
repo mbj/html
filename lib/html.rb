@@ -9,7 +9,7 @@ module HTML
   CONTENT_TAGS = IceNine.deep_freeze(%w(
     a abbr address article aside audio b bdi bdo blockquote
     body button canvas caption cite code col colgroup data 
-    dd del details dfn dov dl dt em embed eventsource fieldset 
+    dd del details dfn div dl dt em embed eventsource fieldset 
     fieldsource figcaption figure footer form h1 h2 h3 h4 h5 h6 
     head header hgroup html i iframe ins kbd label legend li link 
     mark menu nav noscript object ol optgroup option output p pre 
