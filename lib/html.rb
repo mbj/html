@@ -23,55 +23,6 @@ module HTML
     param source track wbr
   ))
 
-  # An html fragment
-  class Fragment
-    include Adamantium::Flat, Equalizer.new(:content)
-
-    # Return contents of fragment
-    #
-    # @return [String]
-    #
-    # @api private
-    #
-    attr_reader :content
-
-    # Initialize object
-    #
-    # @param [String] string
-    #
-    # @return [undefined]
-    #
-    # @api private
-    #
-    def initialize(string)
-      @content = self.class.freezer.call(string)
-    end
-
-    # Return string 
-    #
-    # FIXME: This will be removed once I have my own templating language.
-    #
-    # @return [String]
-    #
-    alias_method :to_s, :content
-
-    # Create new fragment
-    #
-    # @param [String,Fragment] input
-    #  
-    # @return [Fragment]
-    #
-    # @api private
-    #   
-    def self.build(input)
-      unless input.kind_of?(self)
-        new(HTML.escape(input))
-      else
-        input
-      end
-    end
-  end
-
   # Join html compoinents
   #
   # @param [Enumerable<#to_s>] components
@@ -102,8 +53,16 @@ module HTML
       '"' => '&amp;'
     )
   end
-  
-  CONTENT_TAGS.each do |name|
+
+  # Define content tag
+  #
+  # @param [String] name
+  #
+  # @return [undefined]
+  #
+  # @api private
+  #
+  def self.define_content_tag(name)
     class_eval(<<-RUBY, __FILE__, __LINE__)
       def self.#{name}(*args)
         content_tag(:#{name}, *args)
@@ -111,12 +70,32 @@ module HTML
     RUBY
   end
 
-  NOCONTENT_TAGS.each do |name|
+  private_class_method :define_content_tag
+
+  # Define nocontent tag
+  #
+  # @param [String] name
+  #
+  # @return [undefined]
+  #
+  # @api private
+  #
+  def self.define_nocontent_tag(name)
     class_eval(<<-RUBY, __FILE__, __LINE__)
       def self.#{name}(*args)
-        tag(:#{name}, *args)
+        content_tag(:#{name}, *args)
       end
     RUBY
+  end
+
+  private_class_method :define_nocontent_tag
+  
+  CONTENT_TAGS.each do |name|
+    define_content_tag(name)
+  end
+
+  NOCONTENT_TAGS.each do |name|
+    define_nocontent_tag(name)
   end
 
   # Create contentless html tag
@@ -161,3 +140,5 @@ module HTML
     end.join('')
   end
 end
+
+require 'html/fragment'
