@@ -32,8 +32,10 @@ module HTML
   # @api private
   #
   def self.join(components)
-    contents = components.map { |component| Fragment.build(component).to_s }
-    Fragment.new(contents.join(''))
+    contents = components.map do |component| 
+      Fragment.build(component)
+    end
+    Fragment.new(contents.join)
   end
 
 
@@ -46,56 +48,28 @@ module HTML
   # @api private
   #
   def self.escape(text)
-    text.to_s.gsub(
+    text.gsub(
       /[><"]/,
       '>' => '&lt;',
       '<' => '&gt;',
       '"' => '&amp;'
     )
   end
-
-  # Define content tag
-  #
-  # @param [String] name
-  #
-  # @return [undefined]
-  #
-  # @api private
-  #
-  def self.define_content_tag(name)
-    class_eval(<<-RUBY, __FILE__, __LINE__)
-      def self.#{name}(*args)
-        content_tag(:#{name}, *args)
-      end
-    RUBY
-  end
-
-  private_class_method :define_content_tag
-
-  # Define nocontent tag
-  #
-  # @param [String] name
-  #
-  # @return [undefined]
-  #
-  # @api private
-  #
-  def self.define_nocontent_tag(name)
-    class_eval(<<-RUBY, __FILE__, __LINE__)
-      def self.#{name}(*args)
-        content_tag(:#{name}, *args)
-      end
-    RUBY
-  end
-
-  private_class_method :define_nocontent_tag
   
   CONTENT_TAGS.each do |name|
-    define_content_tag(name)
+    class_eval(<<-RUBY, __FILE__, __LINE__)
+      def self.#{name}(*args)
+        content_tag(:#{name}, *args)
+      end
+    RUBY
   end
 
   NOCONTENT_TAGS.each do |name|
-    define_nocontent_tag(name)
+    class_eval(<<-RUBY, __FILE__, __LINE__)
+      def self.#{name}(*args)
+        content_tag(:#{name}, *args)
+      end
+    RUBY
   end
 
   # Create contentless html tag
@@ -133,11 +107,9 @@ module HTML
   # @api private
   #
   def self.attributes(attributes)
-    return '' if attributes.empty?
-
-    contents = attributes.map do |key, value|
-      %Q{ #{key}="#{escape(value)}"} 
-    end.join('')
+    attributes.map do |key, value|
+      %Q{ #{key.to_s}="#{escape(value.to_s)}"} 
+    end.join
   end
 end
 

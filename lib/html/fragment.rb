@@ -2,7 +2,7 @@ module HTML
 
   # An html fragment
   class Fragment
-    include Adamantium::Flat, Equalizer.new(:content)
+    include Adamantium, Equalizer.new(:content)
 
     # Return contents of fragment
     #
@@ -21,7 +21,7 @@ module HTML
     # @api private
     #
     def initialize(string)
-      @content = self.class.freezer.call(string)
+      @content = string
     end
 
     # Return string 
