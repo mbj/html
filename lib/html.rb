@@ -67,7 +67,7 @@ module HTML
   NOCONTENT_TAGS.each do |name|
     class_eval(<<-RUBY, __FILE__, __LINE__)
       def self.#{name}(*args)
-        content_tag(:#{name}, *args)
+        tag(:#{name}, *args)
       end
     RUBY
   end
