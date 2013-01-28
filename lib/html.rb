@@ -1,4 +1,5 @@
 #encoding: utf-8
+require 'backports'
 require 'adamantium'
 require 'equalizer'
 require 'ice_nine'
