@@ -32,6 +32,21 @@ module HTML
     #
     alias_method :to_s, :content
 
+    # Enumerate contents
+    #
+    # The idea is to make it compatible with a rack body.
+    #
+    # @return [self]
+    #   if block given
+    #
+    # @api private
+    #
+    def each
+      return to_enum unless block_given?
+      yield content
+      self
+    end
+
     # Create new fragment
     #
     # @param [String,Fragment] input

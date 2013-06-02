@@ -39,7 +39,6 @@ module HTML
     Fragment.new(contents.join)
   end
 
-
   # Escape html
   #
   # @param [String] text
