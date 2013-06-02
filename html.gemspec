@@ -4,7 +4,7 @@ Gem::Specification.new do |gem|
   gem.name        = 'html'
   gem.version     = '0.0.1'
   gem.authors     = [ 'Markus Schirp' ]
-  gem.email       = [ 'mbj@seonic.net' ]
+  gem.email       = [ 'mbj@schirp-dso.com' ]
   gem.description = 'Because HTML is not a String'
   gem.summary     = gem.description
   gem.homepage    = 'https://github.com/mbj/html'
