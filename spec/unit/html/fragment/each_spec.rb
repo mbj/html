@@ -7,9 +7,21 @@ describe HTML::Fragment, '#each' do
 
   let(:chunk) { mock('Chunk') }
 
-  subject { object.each { |chunk| yields << chunk } }
+  context 'with block' do
+    subject { object.each { |chunk| yields << chunk } }
 
-  it 'should enumerate chunks' do
-    expect { subject }.to change { yields }.from([]).to([chunk])
+    it 'should enumerate chunks' do
+      expect { subject }.to change { yields }.from([]).to([chunk])
+    end
+
+    it_should_behave_like 'a command method'
+  end
+
+  context 'without block' do
+    subject { object.each }
+
+    it { should be_a(Enumerator) }
+
+    its(:to_a) { should eql([chunk]) }
   end
 end

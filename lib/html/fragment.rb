@@ -64,6 +64,6 @@ module HTML
     end
 
     EMPTY = new('')
-  end
 
-end
+  end # Fragment
+end # HTML
