@@ -108,7 +108,7 @@ module HTML
   #
   def self.attributes(attributes)
     attributes.map do |key, value|
-      %Q{ #{key.to_s}="#{escape(value.to_s)}"}
+      %Q{ #{key}="#{escape(value.to_s)}"}
     end.join
   end
 end
