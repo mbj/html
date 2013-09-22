@@ -16,6 +16,16 @@ describe HTML, '.tag' do
     end
   end
 
+  context 'with plaintext content' do
+    let(:arguments) { [ name, content] }
+
+    let(:content) { '<foo>' }
+
+    it 'should return html fragment wrapping excapted content' do
+      should eql(HTML::Fragment.new('<foo>&gt;foo&lt;</foo>'))
+    end
+  end
+
   context 'with attributes' do
     let(:arguments) { [ name, content, attributes ] }
 
