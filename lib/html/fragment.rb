@@ -24,7 +24,7 @@ module HTML
       @content = string
     end
 
-    # Return string 
+    # Return string
     #
     # FIXME: This will be removed once I have my own templating language.
     #
@@ -50,11 +50,11 @@ module HTML
     # Create new fragment
     #
     # @param [String,Fragment] input
-    #  
+    #
     # @return [Fragment]
     #
     # @api private
-    #   
+    #
     def self.build(input)
       if input.kind_of?(self)
         input
