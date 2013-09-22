@@ -1,5 +1,5 @@
 #encoding: utf-8
-require 'backports'
+
 require 'adamantium'
 require 'equalizer'
 require 'ice_nine'
@@ -9,13 +9,13 @@ module HTML
 
   CONTENT_TAGS = IceNine.deep_freeze(%w(
     a abbr address article aside audio b bdi bdo blockquote
-    body button canvas caption cite code col colgroup data 
-    dd del details dfn div dl dt em embed eventsource fieldset 
-    fieldsource figcaption figure footer form h1 h2 h3 h4 h5 h6 
-    head header hgroup html i iframe ins kbd label legend li link 
-    mark menu nav noscript object ol optgroup option output p pre 
-    q ruby rp rt s samp script section select small span strong 
-    style sub summary sup table tbody textarea tfoot th thead time 
+    body button canvas caption cite code col colgroup data
+    dd del details dfn div dl dt em embed eventsource fieldset
+    fieldsource figcaption figure footer form h1 h2 h3 h4 h5 h6
+    head header hgroup html i iframe ins kbd label legend li link
+    mark menu nav noscript object ol optgroup option output p pre
+    q ruby rp rt s samp script section select small span strong
+    style sub summary sup table tbody textarea tfoot th thead time
     title td tr ul var video
   ))
 
@@ -33,7 +33,7 @@ module HTML
   # @api private
   #
   def self.join(components)
-    contents = components.map do |component| 
+    contents = components.map do |component|
       Fragment.build(component)
     end
     Fragment.new(contents.join)
@@ -55,7 +55,7 @@ module HTML
       '"' => '&amp;'
     )
   end
-  
+
   CONTENT_TAGS.each do |name|
     class_eval(<<-RUBY, __FILE__, __LINE__)
       def self.#{name}(*args)
@@ -85,7 +85,7 @@ module HTML
     Fragment.new("<#{type}#{attributes(attributes)}/>")
   end
 
-  # Create content tag 
+  # Create content tag
   #
   # @param [#to_str] type
   # @param [String] content
@@ -108,7 +108,7 @@ module HTML
   #
   def self.attributes(attributes)
     attributes.map do |key, value|
-      %Q{ #{key.to_s}="#{escape(value.to_s)}"} 
+      %Q{ #{key.to_s}="#{escape(value.to_s)}"}
     end.join
   end
 end
