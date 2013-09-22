@@ -95,7 +95,7 @@ module HTML
   # @api private
   #
   def self.content_tag(type, content, attributes={})
-    Fragment.new("<#{type}#{attributes(attributes)}>#{Fragment.build(content).to_s}</#{type}>")
+    Fragment.new("<#{type}#{attributes(attributes)}>#{Fragment.build(content)}</#{type}>")
   end
 
   # Create html attributes
