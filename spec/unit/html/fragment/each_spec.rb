@@ -5,7 +5,7 @@ describe HTML::Fragment, '#each' do
 
   let(:object) { described_class.new(chunk) }
 
-  let(:chunk) { mock('Chunk') }
+  let(:chunk) { double('Chunk') }
 
   context 'with block' do
     subject { object.each { |chunk| yields << chunk } }

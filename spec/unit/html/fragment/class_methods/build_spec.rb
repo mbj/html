@@ -15,7 +15,7 @@ describe HTML::Fragment, '.build' do
   end
 
   context 'when input is HTML::Fragment' do
-    let(:input) { HTML::Fragment.new(mock) }
+    let(:input) { HTML::Fragment.new(double) }
 
     it 'should be input' do
       should be(input)
