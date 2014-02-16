@@ -12,6 +12,7 @@ Gem::Specification.new do |gem|
   gem.require_paths    = [ 'lib' ]
   gem.files            = `git ls-files`.split("\n")
   gem.test_files       = `git ls-files -- spec`.split("\n")
+  gem.license          = 'MIT'
   gem.extra_rdoc_files = %w[TODO]
 
   gem.add_runtime_dependency('adamantium',   '~> 0.1.0')
