@@ -7,7 +7,8 @@ describe HTML, '.attributes' do
 
   examples = {
     { 'foo'  => 'bar' } => ' foo="bar"',
-    { 'foo'  => '"'   } => ' foo="&amp;"',
+    { 'foo'  => '"'   } => ' foo="&quot;"',
+    { 'foo'  => '&'   } => ' foo="&amp;"',
     { :class => :baz  } => ' class="baz"'
   }
 

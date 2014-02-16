@@ -9,7 +9,7 @@ describe HTML, '.escape' do
     'foo' => 'foo',
     '<>'  => '&gt;&lt;',
     '<foo>'  => '&gt;foo&lt;',
-    '<foo bar="baz">'  => '&gt;foo bar=&amp;baz&amp;&lt;'
+    '<foo bar="baz">'  => '&gt;foo bar=&quot;baz&quot;&lt;'
   }
 
   examples.each do |input, expectation|

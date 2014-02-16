@@ -39,6 +39,13 @@ module HTML
     Fragment.new(contents.join)
   end
 
+  ESCAPE_TABLE = IceNine.deep_freeze(
+    '>' => '&lt;',
+    '<' => '&gt;',
+    '"' => '&quot;',
+    '&' => '&amp;'
+  )
+
   # Escape html
   #
   # @param [String] text
@@ -49,10 +56,7 @@ module HTML
   #
   def self.escape(text)
     text.gsub(
-      /[><"]/,
-      '>' => '&lt;',
-      '<' => '&gt;',
-      '"' => '&amp;'
+      /[><"&]/, ESCAPE_TABLE
     )
   end
 
