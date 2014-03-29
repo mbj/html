@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |gem|
   gem.name        = 'html'
-  gem.version     = '0.1.1'
+  gem.version     = '0.1.2'
   gem.authors     = [ 'Markus Schirp' ]
   gem.email       = [ 'mbj@schirp-dso.com' ]
   gem.description = 'Because HTML is not a String'
